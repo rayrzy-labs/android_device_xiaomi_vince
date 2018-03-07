@@ -18,7 +18,7 @@
 
 // #define LOG_NDEBUG 0
 
-#include <cutils/log.h>
+#include <log/log.h>
 #include <cutils/properties.h>
 #include <errno.h>
 #include <fcntl.h>

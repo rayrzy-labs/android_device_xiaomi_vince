@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-#include <cutils/log.h>
+#include <log/log.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
