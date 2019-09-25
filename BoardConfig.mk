@@ -43,6 +43,9 @@ TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(
 # ANT
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := vince
+
 # Audio
 AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
 AUDIO_FEATURE_ENABLED_ALAC_OFFLOAD := true
