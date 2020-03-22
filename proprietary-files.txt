@@ -514,9 +514,13 @@ vendor/lib64/libssd.so|bcb7c4213115f2377e0d30dd1a05cae5e88212e4
 vendor/lib64/libops.so|03dc247cbf3e75f8dedf05b779eb65006f7334cd
 vendor/lib64/libspl.so|609af852a498b0a50eb00f2d75913e0fbcbbaee6
 
-# DRM - Widevine - LA.UM.8.6.r1-04000-89xx.0
+# DRM - Widevine - from LA.UM.8.6.2.r1-06600-89xx.0
+vendor/bin/hw/android.hardware.drm@1.2-service.clearkey|96007d6d553925bec04412293e3a5fcfb4928bb0
 vendor/bin/hw/android.hardware.drm@1.2-service.widevine|b626d9bbf7043c66c8ef903c9d0e5183fc47388d
+vendor/etc/init/android.hardware.drm@1.2-service.clearkey.rc|a3f4d3a6ddbdf66d56e5951454660b1a12fab89a
 vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc|75335443a33a06a03eecfa714dfe9f1c0c4df2b1
+vendor/lib/mediadrm/libdrmclearkeyplugin.so|0eed3e515e175010abbd567827a0b73b846d06b5
+vendor/lib64/mediadrm/libdrmclearkeyplugin.so|1b9850ee390f932c34f667883278ce3a7bc9b3fa
 vendor/lib64/libwvhidl.so|4af61fdcf1186700ea7ee23c607fb9ce5fd0f0e8
 
 # Fingerprint - from vince
