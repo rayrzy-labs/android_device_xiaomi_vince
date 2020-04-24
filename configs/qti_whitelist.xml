@@ -122,4 +122,6 @@
     <hidden-api-whitelisted-app package="com.android.camera2" />
     <hidden-api-whitelisted-app package="org.lineageos.snap" />
     <hidden-api-whitelisted-app package="com.google.android.CameraRedmi5Plus" />
+
+    <allow-implicit-broadcast action="org.codeaurora.intent.action.CALL_COMPOSER_INFO" />
 </config>
