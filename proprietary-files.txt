@@ -699,12 +699,6 @@ vendor/lib64/vendor.qti.latency@2.0.so|fe4691e922ec926bd723ac79e6a11ba1d75db75a
 # Consumer IR - from vince
 vendor/lib64/hw/consumerir.default.so|bb9e3f31d4ec8b199fc294577241226c531dfff2
 
-# Display calibration
-vendor/etc/qdcm_calib_data_nt36672_csot_e7_fhdplus_video_mode_dsi_panel.xml
-vendor/etc/qdcm_calib_data_td4310_ebbg_fhdplus_e7_video_mode_dsi_panel.xml
-vendor/etc/qdcm_calib_data_td4310_fhdplus_e7_g55_video_mode_dsi_panel.xml
-vendor/etc/qdcm_calib_data_td4310_fhdplus_e7_video_mode_dsi_panel.xml
-
 # DPM - from LA.UM.8.6.2.r1-07600-89xx.0
 product/bin/dpmd|90cdd79b564456cef2a0c011afab3896463df5e4
 product/etc/dpm/dpm.conf|95e27da8c989e96c6faea6f0697bce11955b62a5
