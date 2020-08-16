@@ -41,6 +41,7 @@
 #include "vendor_init.h"
 
 using android::base::GetProperty;
+using android::init::property_set;
 using std::string;
 
 std::vector<std::string> ro_props_default_source_order = {
@@ -61,6 +62,16 @@ void property_override(char const prop[], char const value[], bool add = true) {
         __system_property_update(pi, value, strlen(value));
     } else if (add) {
         __system_property_add(prop, strlen(prop), value, strlen(value));
+    }
+}
+
+void set_avoid_gfxaccel_config() {
+    struct sysinfo sys;
+    sysinfo(&sys);
+
+    if (sys.totalram <= 3072ull * 1024 * 1024) {
+        // Reduce memory footprint
+        property_set("ro.config.avoid_gfx_accel", "true");
     }
 }
 
@@ -124,6 +135,7 @@ void set_model_props() {
 }
 
 void vendor_load_properties() {
+    set_avoid_gfxaccel_config();
     set_dalvik_props();
     set_model_props();
 }
