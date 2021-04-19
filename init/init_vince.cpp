@@ -25,17 +25,37 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <fcntl.h>
-#include <stdlib.h>
+#include <vector>
+#include <string>
 #include <sys/sysinfo.h>
+
+#include <android-base/properties.h>
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log/log.h"
 
 char const *heaptargetutilization;
 char const *heapminfree;
 char const *heapmaxfree;
+
+using android::base::GetProperty;
+using std::string;
+
+std::vector<string> ro_props_default_source_order = {
+    "", "odm.", "product.", "system.", "vendor.",
+};
+
+void property_override(char const prop[], char const value[], bool add = true) {
+    auto pi = (prop_info*)__system_property_find(prop);
+
+    if (pi != nullptr) {
+        __system_property_update(pi, value, strlen(value));
+    } else if (add) {
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+    }
+}
 
 using android::init::property_set;
 
@@ -58,9 +78,30 @@ void check_device()
    }
 }
 
-void vendor_load_properties()
-{
+void set_model_props() {
+    const auto set_ro_product_prop = [](const std::string& source, const std::string& prop,
+                                        const std::string& value) {
+        auto prop_name = "ro.product." + source + prop;
+        property_override(prop_name.c_str(), value.c_str(), false);
+    };
+
+    string region = GetProperty("ro.boot.hwc", "");
+    string model;
+
+    if (region == "India") {
+        model = "Redmi Note 5";
+    } else {
+        model = "Redmi 5 Plus";
+    }
+
+    for (const auto& source : ro_props_default_source_order) {
+        set_ro_product_prop(source, "model", model);
+    }
+}
+
+void vendor_load_properties() {
     check_device();
+    set_model_props();
 
     property_set("dalvik.vm.heapstartsize", "8m");
     property_set("dalvik.vm.heapgrowthlimit", "192m");
