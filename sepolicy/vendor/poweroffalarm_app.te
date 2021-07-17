@@ -1,1 +1,2 @@
 allow poweroffalarm_app cgroup:file rw_file_perms;
+hal_client_domain(poweroffalarm_app, hal_perf);
