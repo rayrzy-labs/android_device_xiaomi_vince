@@ -74,7 +74,7 @@ TARGET_BOOTLOADER_BOARD_NAME := msm8953
 TARGET_NO_BOOTLOADER := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/configs/bluetooth
 
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
@@ -119,7 +119,7 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware \
     /mnt/vendor/persist:/persist
 TARGET_COPY_OUT_VENDOR := vendor
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/fs/config.fs
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -130,9 +130,9 @@ TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
 # HIDL
-DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
-DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/framework_manifest.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
+DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
