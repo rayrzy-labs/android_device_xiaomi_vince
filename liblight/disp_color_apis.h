@@ -1,5 +1,4 @@
-#ifndef __DISP_COLOR_APIS_H__
-#define __DISP_COLOR_APIS_H__
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -55,5 +54,3 @@ int32_t disp_api_set_panel_brightness_level_ext(DISPAPI_HANDLE hctx,
 #ifdef __cplusplus
 }
 #endif
-
-#endif  // __DISP_COLOR_APIS_H__

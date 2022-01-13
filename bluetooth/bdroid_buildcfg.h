@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-#ifndef _BDROID_BUILDCFG_H
-#define _BDROID_BUILDCFG_H
+#pragma once
 
 #define MAX_ACL_CONNECTIONS 16
 #define MAX_L2CAP_CHANNELS 32
@@ -32,5 +31,3 @@
 #define BTM_SCO_ENHANCED_SYNC_ENABLED FALSE
 
 #define AVDT_NUM_SEPS 35
-
-#endif /* _BDROID_BUILDCFG_H */
