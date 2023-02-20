@@ -3,8 +3,7 @@
     <item name="screen.on">75</item>
     <item name="screen.full">255</item>
     <array name="cpu.clusters.cores">
-        <value>4</value>
-        <value>4</value>
+        <value>8</value>
     </array>
     <array name="cpu.speeds.cluster0">
         <value>652800</value>
@@ -16,24 +15,6 @@
         <value>2016000</value>
     </array>
     <array name="cpu.active.cluster0">
-        <value>13</value>
-        <value>23</value>
-        <value>33</value>
-        <value>44</value>
-        <value>55</value>
-        <value>68</value>
-        <value>76</value>
-    </array>
-    <array name="cpu.speeds.cluster1">
-        <value>652800</value>
-        <value>1036800</value>
-        <value>1401600</value>
-        <value>1689600</value>
-        <value>1804800</value>
-        <value>1958400</value>
-        <value>2016000</value>
-    </array>
-    <array name="cpu.active.cluster1">
         <value>13</value>
         <value>23</value>
         <value>33</value>
