@@ -1,0 +1,17 @@
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "lights.msm8953",
+    srcs: ["lights.c"],
+    relative_install_path: "hw",
+    shared_libs: [
+        "liblog",
+        "libcutils",
+    ],
+    cflags: ["-DLOG_TAG=\"qdlights\""] + ["-DWHITE_LED"],
+    clang: true,
+    header_libs: ["libhardware_headers"],
+    vendor: true,
+}
