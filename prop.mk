@@ -45,11 +45,8 @@ vendor.voice.voip.conc.disabled=true
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
 bluetooth.hfp.client=1 \
-persist.vendor.bt.enable.splita2dp=false \
-persist.vendor.service.bdroid.sibs=false \
-ro.bluetooth.hfp.ver=1.7 \
-ro.vendor.qualcomm.bt.hci_transport=smd
 vendor.qcom.bluetooth.soc=smd \
+ro.bluetooth.hfp.ver=1.7
 
 # Boot
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -189,7 +186,6 @@ persist.dbg.vt_avail_ovr=1 \
 persist.dbg.wfc_avail_ovr=1 \
 persist.radio.multisim.config=dsds \
 persist.sys.fflag.override.settings_network_and_internet_v2=true \
-persist.vendor.radio.aosp_usr_pref_sel=true \
 persist.vendor.radio.apm_sim_not_pwdn=1 \
 persist.vendor.radio.custom_ecc=1 \
 persist.vendor.radio.hw_mbn_update=0 \
@@ -197,9 +193,9 @@ persist.vendor.radio.rat_on=combine \
 persist.vendor.radio.sib16_support=1 \
 ril.subscription.types=NV,RUIM \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
+ro.telephony.iwlan_operation_mode=legacy \
 ro.telephony.call_ring.multiple=false \
 ro.telephony.default_network=22,22 \
-ro.telephony.iwlan_operation_mode=legacy \
 ro.telephony.use_old_mnc_mcc_format=true \
 service.qti.ims.enabled=1 \
 vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
@@ -208,12 +204,7 @@ vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
-ro.surface_flinger.max_virtual_display_dimension=4096 \
-ro.surface_flinger.protected_contents=true \
-ro.surface_flinger.set_display_power_timer_ms=10000 \
-ro.surface_flinger.set_idle_timer_ms=9000 \
-ro.surface_flinger.set_touch_timer_ms=5000 \
-ro.surface_flinger.use_smart_90_for_video=true
+ro.surface_flinger.max_virtual_display_dimension=4096
 
 # Time Services
 PRODUCT_PROPERTY_OVERRIDES += \
