@@ -1,12 +1,6 @@
 #
 # system.prop for vince
 #
-
-# ART
-PRODUCT_PROPERTY_OVERRIDES += \
-dalvik.vm.dex2oat-filter=speed \
-dalvik.vm.image-dex2oat-filter=speed
-
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
 af.fast_track_multiplier=2 \
@@ -62,10 +56,7 @@ persist.vendor.camera.display.lmax=1280x720 \
 persist.vendor.camera.display.umax=1920x1080 \
 persist.vendor.qti.telephony.vt_cam_interface=1 \
 vendor.camera.lowpower.record.enable=1 \
-vidc.enc.dcvs.extra-buff-count=2 \
-persist.camera.HAL3.enabled=1 \
-persist.camera.eis.enable=1 \
-persist.camera.CDS=off
+vidc.enc.dcvs.extra-buff-count=2
 
 # Cne
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -77,28 +68,23 @@ persist.debug.coresight.config=stm-events
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-debug.cpurend.vsync=false \
 debug.egl.hw=0 \
 debug.enable.sglscale=1 \
-debug.hwui.renderer=skiagl \
 debug.mdpcomp.logs=0 \
-debug.sdm.support_writeback=0 \
-debug.sf.disable_backpressure=1 \
-debug.sf.enable_gl_backpressure=1 \
 debug.sf.enable_hwc_vds=1 \
 debug.sf.hw=0 \
 debug.sf.latch_unsignaled=1 \
 debug.sf.recomputecrop=0 \
+debug.sf.disable_backpressure=1 \
 dev.pm.dyn_samplingrate=1 \
 persist.demo.hdmirotationlock=false \
 persist.hwc.enable_vds=1 \
 persist.hwc.mdpcomp.enable=true \
 ro.opengles.version=196610 \
 ro.vendor.display.cabl=2 \
-vendor.display.disable_skip_validate=1 \
 vendor.display.enable_default_color_mode=1 \
-vendor.gralloc.enable_fb_ubwc=1 \
-vendor.video.disable.ubwc=1
+vendor.display.disable_skip_validate=1 \
+vendor.gralloc.enable_fb_ubwc=1
 
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -121,14 +107,6 @@ vendor.hw.fm.init=0
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 
-# Graphics
-PRODUCT_PROPERTY_OVERRIDES += \
-debug.sf.early_phase_offset_ns=11600000 \
-debug.sf.early_app_phase_offset_ns=11600000 \
-debug.sf.early_gl_phase_offset_ns=3000000 \
-debug.sf.early_gl_app_phase_offset_ns=15000000 \
-debug.sf.phase_offset_threshold_for_next_vsync_ns=11600000
-
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
 av.debug.disable.pers.cache=1 \
@@ -149,9 +127,8 @@ vendor.video.disable.ubwc=1
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.sys.fw.dex2oat_thread_count=8 \
-debug.qcom_ignore_qperf=true \
-debug.qcom_ignore_uxperf=true
+ro.vendor.extension_library=libqti-perfd-client.so \
+ro.vendor.qti.sys.fw.bservice_enable=true
 
 # Netmgrd
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -191,7 +168,6 @@ persist.vendor.radio.rat_on=combine \
 persist.vendor.radio.sib16_support=1 \
 ril.subscription.types=NV,RUIM \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
-ro.telephony.iwlan_operation_mode=legacy \
 ro.telephony.call_ring.multiple=false \
 ro.telephony.default_network=22,22 \
 ro.telephony.use_old_mnc_mcc_format=true \
@@ -222,13 +198,4 @@ wifi.interface=wlan0
 
 # Wifi-Display
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.debug.wfd.enable=1 \
 persist.sys.wfd.virtual=0
-
-# havocOS maintainer
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.havoc.maintainer=KenHV
-
-# Enable QC2 bufferqueue block-pool
-PRODUCT_PROPERTY_OVERRIDES += \
-vendor.qc2.use.bqpool=1
