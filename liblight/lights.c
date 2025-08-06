@@ -22,16 +22,14 @@
 #include <cutils/properties.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <hardware/lights.h>
 #include <pthread.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-
 #include <sys/ioctl.h>
 #include <sys/types.h>
-
-#include <hardware/lights.h>
+#include <unistd.h>
 
 #ifndef DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS
 #define DEFAULT_LOW_PERSISTENCE_MODE_BRIGHTNESS 0x80
@@ -158,15 +156,15 @@ static int set_speaker_light_locked(struct light_device_t *dev,
   }
 
   switch (state->flashMode) {
-  case LIGHT_FLASH_TIMED:
-    onMS = state->flashOnMS;
-    offMS = state->flashOffMS;
-    break;
-  case LIGHT_FLASH_NONE:
-  default:
-    onMS = 0;
-    offMS = 0;
-    break;
+    case LIGHT_FLASH_TIMED:
+      onMS = state->flashOnMS;
+      offMS = state->flashOffMS;
+      break;
+    case LIGHT_FLASH_NONE:
+    default:
+      onMS = 0;
+      offMS = 0;
+      break;
   }
 
   colorRGB = state->color;

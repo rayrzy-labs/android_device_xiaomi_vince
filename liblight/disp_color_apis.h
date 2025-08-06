@@ -56,4 +56,4 @@ int32_t disp_api_set_panel_brightness_level_ext(DISPAPI_HANDLE hctx,
 }
 #endif
 
-#endif // __DISP_COLOR_APIS_H__
+#endif  // __DISP_COLOR_APIS_H__
