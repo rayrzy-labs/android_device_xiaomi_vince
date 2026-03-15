@@ -36,23 +36,20 @@
 #include "property_service.h"
 #include "vendor_init.h"
 
-char const* heaptargetutilization;
-char const* heapminfree;
-char const* heapmaxfree;
-
 using android::base::GetProperty;
+using android::init::property_set;
 using std::string;
 
+char const *heaptargetutilization;
+char const *heapminfree;
+char const *heapmaxfree;
+
 std::vector<string> ro_props_default_source_order = {
-    "",
-    "odm.",
-    "product.",
-    "system.",
-    "vendor.",
+    "", "odm.", "product.", "system.", "vendor.",
 };
 
 void property_override(char const prop[], char const value[], bool add = true) {
-  auto pi = (prop_info*)__system_property_find(prop);
+  auto pi = (prop_info *)__system_property_find(prop);
 
   if (pi != nullptr) {
     __system_property_update(pi, value, strlen(value));
@@ -61,11 +58,8 @@ void property_override(char const prop[], char const value[], bool add = true) {
   }
 }
 
-using android::init::property_set;
-
 void check_device() {
   struct sysinfo sys;
-
   sysinfo(&sys);
 
   if (sys.totalram > 2048ull * 1024 * 1024) {
@@ -81,25 +75,56 @@ void check_device() {
   }
 }
 
-void set_model_props() {
-  const auto set_ro_product_prop = [](const std::string& source, const std::string& prop,
-                                      const std::string& value) {
-    auto prop_name = "ro.product." + source + prop;
-    property_override(prop_name.c_str(), value.c_str(), false);
-  };
+void set_ro_build_prop(const std::string &source, const std::string &prop,
+                       const std::string &value) {
+  auto prop_name = "ro." + source + "build." + prop;
+  property_override(prop_name.c_str(), value.c_str(), false);
+}
 
-  string region = GetProperty("ro.boot.hwc", "");
-  string model;
+void set_ro_product_prop(const std::string &source, const std::string &prop,
+                         const std::string &value) {
+  auto prop_name = "ro.product." + source + prop;
+  property_override(prop_name.c_str(), value.c_str(), false);
+}
 
-  if (region == "India") {
+void load_device_properties() {
+  string region = GetProperty("ro.boot.hwc", ""), fingerprint, description,
+         model;
+
+  // Set fingerprint and description based on region
+  if (region == "CN" || region == "China") {
+    fingerprint = "xiaomi/vince/vince:8.1.0/OPM1.171019.019/"
+                  "V11.0.3.0.OEGCNXM:user/release-keys";
+    description =
+        "vince-user 8.1.0 OPM1.171019.019 V11.0.3.0.OEGCNXM release-keys";
+    model = "Redmi 5 Plus";
+  } else if (region == "Russia") {
+    fingerprint =
+        "xiaomi/vince_ru/vince:7.1.2/N2G47H/V9.6.3.0.NEGRUFD:user/release-keys";
+    description = "vince-user 7.1.2 N2G47H V9.6.3.0.NEGRUFD release-keys";
+    model = "Redmi 5 Plus";
+  } else if (region == "India") {
+    fingerprint = "xiaomi/vince/vince:8.1.0/OPM1.171019.019/"
+                  "V11.0.2.0.OEGMIXM:user/release-keys";
+    description =
+        "vince-user 8.1.0 OPM1.171019.019 V11.0.2.0.OEGMIXM release-keys";
     model = "Redmi Note 5";
   } else {
+    // Global (default)
+    fingerprint = "xiaomi/vince/vince:8.1.0/OPM1.171019.019/"
+                  "V11.0.2.0.OEGMIXM:user/release-keys";
+    description =
+        "vince-user 8.1.0 OPM1.171019.019 V11.0.2.0.OEGMIXM release-keys";
     model = "Redmi 5 Plus";
   }
 
-  for (const auto& source : ro_props_default_source_order) {
+  // Set all properties
+  for (const auto &source : ro_props_default_source_order) {
+    set_ro_build_prop(source, "fingerprint", fingerprint);
     set_ro_product_prop(source, "model", model);
   }
+
+  property_override("ro.build.description", description.c_str());
 }
 
 void set_avoid_gfxaccel_config() {
@@ -114,7 +139,7 @@ void set_avoid_gfxaccel_config() {
 
 void vendor_load_properties() {
   check_device();
-  set_model_props();
+  load_device_properties();
   set_avoid_gfxaccel_config();
 
   property_set("dalvik.vm.heapstartsize", "8m");
